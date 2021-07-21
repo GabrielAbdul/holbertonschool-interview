@@ -16,7 +16,6 @@ def canUnlockAll(boxes):
 def checkOtherBoxes(box, boxes, keys):
     '''checks if key to our current box is in a
     box we havent seen yet, but can unlock'''
-    print("keys", keys, "box", box)
     for i in range(box + 1, len(boxes)):
         for j in boxes[i]:
             if i in keys and j == box:
