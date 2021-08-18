@@ -28,14 +28,17 @@ static void print_grid(int grid[3][3])
  */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int i, j;
+	int i, j, stable = 0;
 
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
 		{
 			if (grid1[i][j] != 0)
+			{
+				stable = 1;
 				break;
+			}
 		}
 		if (i == 2 && j == 2)
 		{
@@ -57,7 +60,8 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 			return;
 		}
 	}
-	printf("=\n");
+	if (stable)
+		printf("=\n");
 	/* add each index of the sandpiles together */
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
