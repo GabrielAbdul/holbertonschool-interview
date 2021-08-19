@@ -82,11 +82,11 @@ void topple_sandpile(int grid[3][3])
 		{0, 0, 0},
 		{0, 0, 0}
 	};
+
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 			if (grid[i][j] > 3)
 				arr[i][j] = 1;
-
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 		{
@@ -104,14 +104,12 @@ void topple_sandpile(int grid[3][3])
 				}
 				else if (IS_TOP || IS_BOTTOM)
 				{
-					grid[1][1]++;
-					grid[i][j - 1]++;
+					grid[1][1]++, grid[i][j - 1]++;
 					grid[i][j + 1]++;
 				}
 				else if (IS_LEFT || IS_RIGHT)
 				{
-					grid[1][1]++;
-					grid[i - 1][j]++;
+					grid[1][1]++, grid[i - 1][j]++;
 					grid[i + 1][j]++;
 				}
 			}
