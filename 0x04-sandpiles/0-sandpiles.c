@@ -76,11 +76,18 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
  */
 void topple_sandpile(int grid[3][3])
 {
+	int arr[3][3];
 	int i, j;
 
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 			if (grid[i][j] > 3)
+				arr[i][j] = 1;
+
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 3; j++)
+		{
+			if (arr[i][j] == 1)
 			{
 				grid[i][j] -= 4;
 				if (IS_CORNER)
@@ -105,16 +112,16 @@ void topple_sandpile(int grid[3][3])
 					grid[i + 1][j]++;
 				}
 			}
+		}
 	if (unstable(grid))
 		printf("=\n"), print_grid(grid), topple_sandpile(grid);
 }
-
 /**
  * operate_corners - operates on corners of sandpiles
  * @grid: sandpile
  * @i: the position of rows
  * @j: the position of columns
- */
+*/
 void operate_corners(int grid[3][3], int i, int j)
 {
 	if (TOP_LEFT)
