@@ -3,16 +3,18 @@
 
 /**
  * heap_insert - inserts node into max heap
+ * @root: root
+ * @value: value
  * Return: node we added
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-    if (!(*root))
-    {
-        (*root) = binary_tree_node(NULL, value);
-        return (*root);
-    }
-    return (insertCompleteTree(root, value));
+	if (!(*root))
+	{
+		(*root) = binary_tree_node(NULL, value);
+		return (*root);
+	}
+	return (insertCompleteTree(root, value));
 }
 
 /**
@@ -23,35 +25,35 @@ heap_t *heap_insert(heap_t **root, int value)
  */
 heap_t *insertCompleteTree(heap_t **root, int value)
 {
-    int numNodes = countNodes(*root);
-    heap_t *parent, *tmp, *node;
-    size_t height = binaryTreeHeight(*root);
+	int numNodes = countNodes(*root);
+	heap_t *parent, *tmp, *node;
+	size_t height = binaryTreeHeight(*root);
 
-    if (isComplete(*root, 0, numNodes))
-    {
-        tmp = *root;
-        node = binary_tree_node(NULL, value);
-        while (tmp && tmp->left)
-            tmp = tmp->left;
-        node->parent = tmp;
-        tmp->left = node;
-        heapify(node);
-        return (node);
-    }
-    parent = findParent(*root, height - 1, height);
-    if (!parent)
-    {
-        for (tmp = (*root); tmp->left; tmp = tmp->left)
-            ;
-        parent = tmp;
-    }
-    node = binary_tree_node(parent, value);
-    if (!parent->left)
-        parent->left = node;
-    else
-        parent->right = node;
-    heapify(node);
-    return (node);
+	if (isComplete(*root, 0, numNodes))
+	{
+		tmp = *root;
+		node = binary_tree_node(NULL, value);
+		while (tmp && tmp->left)
+			tmp = tmp->left;
+		node->parent = tmp;
+		tmp->left = node;
+		heapify(node);
+		return (node);
+	}
+	parent = findParent(*root, height - 1, height);
+	if (!parent)
+	{
+		for (tmp = (*root); tmp->left; tmp = tmp->left)
+			;
+		parent = tmp;
+	}
+	node = binary_tree_node(parent, value);
+	if (!parent->left)
+		parent->left = node;
+	else
+		parent->right = node;
+	heapify(node);
+	return (node);
 }
 
 /**
@@ -61,48 +63,48 @@ heap_t *insertCompleteTree(heap_t **root, int value)
  */
 size_t binaryTreeHeight(heap_t *root)
 {
-    size_t left, right;
+	size_t left, right;
 
-    if (!root)
-        return (0);
-    left = (root->left) ? 1 + binaryTreeHeight(root->left) : 0;
-    right = (root->right) ? 1 + binaryTreeHeight(root->right) : 0;
-    return (MAX(left, right));
+	if (!root)
+		return (0);
+	left = (root->left) ? 1 + binaryTreeHeight(root->left) : 0;
+	right = (root->right) ? 1 + binaryTreeHeight(root->right) : 0;
+	return (MAX(left, right));
 }
 /**
  * findParent - finds parent of node
  * @node: node to find parent of
  * @height: height of tree
+ * @level: level
  * Return: parent
  */
 heap_t *findParent(heap_t *node, size_t level, size_t height)
 {
-    heap_t *left, *right;
+	heap_t *left, *right;
 
-    if (node->left && node->right && node->parent == NULL)
-    {
-        if (node->left->left == NULL)
-            return (node->left);
-        else if (node->right->right == NULL)
-            return (node->right);
-    }
-    if (level == height - 1)
-        return (!node->left || !node->right) ? node : node->left;
+	if (node->left && node->right && node->parent == NULL)
+	{
+		if (node->left->left == NULL)
+			return (node->left);
+		else if (node->right->right == NULL)
+			return (node->right);
+	}
+	if (level == height - 1)
+		return ((!node->left || !node->right) ? node : node->left);
 
-    left = findParent(node->left, level, height - 1);
-    right = findParent(node->right, level, height - 1);
+	left = findParent(node->left, level, height - 1);
+	right = findParent(node->right, level, height - 1);
 
-    if (!left && !right)
-        return (NULL);
-    else if (left && !right)
-        return (left);
-    else
-        return (right);
+	if (!left && !right)
+		return (NULL);
+	else if (left && !right)
+		return (left);
+	else
+		return (right);
 }
 
 /**
  * heapify - fix a heap after insertion
- * @root: root node
  * @node: node
  * Return: node
  */
