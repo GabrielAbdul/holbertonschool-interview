@@ -8,7 +8,6 @@ from sys import stdin
 statusCodes = {'200': 0, '301': 0, '400': 0, '401': 0,
                '403': 0, '404': 0, '405': 0, '500': 0}
 
-printed = 0
 
 def printStatusCodes(sumFileSizes):
     '''prints status codes
@@ -22,6 +21,7 @@ def printStatusCodes(sumFileSizes):
 
 def main():
     '''script that reads stdin line by line and computes metrics'''
+    printed = 0
     try:
         count = 0
         sumFileSizes = 0
