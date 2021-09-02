@@ -8,6 +8,7 @@ from sys import stdin
 statusCodes = {'200': 0, '301': 0, '400': 0, '401': 0,
                '403': 0, '404': 0, '405': 0, '500': 0}
 
+printed = 0
 
 def printStatusCodes(sumFileSizes):
     '''prints status codes
@@ -36,8 +37,17 @@ def main():
                     if count == 10:
                         printStatusCodes(sumFileSizes)
                         count = 0
+                        printed = 1
+            else:
+                try:
+                    sumFileSizes += int(inputs[-1])
+                except Exception:
+                    pass
         if count > 0:
             printStatusCodes(sumFileSizes)
+            printed = 1
+        if printed == 0:
+            print("File size: 0")
     except KeyboardInterrupt:
         printStatusCodes(sumFileSizes)
         raise
