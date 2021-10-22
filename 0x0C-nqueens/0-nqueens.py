@@ -43,7 +43,7 @@ def printUsageAndExit():
         print("Usage: nqueens N")
         exit(1)
 
-    if not argv[1].isdigit:
+    if not argv[1].isdigit():
         print("N must be a number")
         exit(1)
 
