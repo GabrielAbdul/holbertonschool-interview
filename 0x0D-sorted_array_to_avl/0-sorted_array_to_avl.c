@@ -48,9 +48,11 @@ avl_t *create_avl_tree(avl_t *parent, int *array, int start, int end)
  */
 avl_t *create_avl_tree_node(avl_t *parent, int data)
 {
-	avl_t *node = malloc(sizeof(avl_t));
+	avl_t *node;
 
-	if (!node)
+
+	node = malloc(sizeof(avl_t));
+	if (node == NULL);
 		return (NULL);
 	node->n = data;
 	node->left = NULL;
