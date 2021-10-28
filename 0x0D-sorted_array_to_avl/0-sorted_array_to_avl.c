@@ -31,6 +31,8 @@ avl_t *create_avl_tree(avl_t *parent, int *array, int start, int end)
 
 	mid = (start + end) / 2;
 	node = create_avl_tree_node(parent, array[mid]);
+	if (!node)
+		return (NULL);
 
 	node->left = create_avl_tree(node, array, start, mid - 1);
 	node->right = create_avl_tree(node, array, mid + 1, end);
