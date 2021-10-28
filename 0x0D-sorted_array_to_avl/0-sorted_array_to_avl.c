@@ -52,7 +52,7 @@ avl_t *create_avl_tree_node(avl_t *parent, int data)
 
 
 	node = malloc(sizeof(avl_t));
-	if (node == NULL);
+	if (node == NULL)
 		return (NULL);
 	node->n = data;
 	node->left = NULL;
