@@ -18,10 +18,10 @@ def rain(walls):
     # for ever element in the array
     for i, num in enumerate(walls):
         # find max element on left
-        lm = max(walls[:index + 1])
+        lm = max(walls[:i + 1])
 
         # find max element on right
-        rm = max(walls[index:])
+        rm = max(walls[i:])
         small = min(lm, rm)
 
         # update max rain water
