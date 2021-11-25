@@ -54,7 +54,7 @@ void heapify(int *arr, int n, int i, size_t size)
 
 	if (max != i)
 	{
-		swap(&arr[i], &arr[max]);
+		utility(&arr[i], &arr[max]);
 		print_array(arr, size);
 		heapify(arr, n, max, size);
 	}
