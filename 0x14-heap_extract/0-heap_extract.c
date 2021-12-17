@@ -56,15 +56,12 @@ void heapify(heap_t *root)
 	else if (root->left)
 		max = root->left;
 
-	if (max)
+	if (max && max->n > root->n)
 	{
-		if (max->n)
-		{
-			temp = max->n;
-			max->n = root->n;
-			root->n = temp;
-			heapify(max);
-		}
+		temp = max->n;
+		max->n = root->n;
+		root->n = temp;
+		heapify(max);
 	}
 }
 
