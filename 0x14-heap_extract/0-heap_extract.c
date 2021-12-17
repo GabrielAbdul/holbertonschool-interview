@@ -10,7 +10,7 @@ int heap_extract(heap_t **root)
 	heap_t  *last;
 	int n;
 
-	if (root == NULL)
+	if (root == NULL || (*root) == NULL)
 		return (0);
 
 	n = (*root)->n;
