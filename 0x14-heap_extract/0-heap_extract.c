@@ -40,7 +40,7 @@ int heap_extract(heap_t **root)
  */
 void heapify(heap_t *root)
 {
-	heap_t *max;
+	heap_t *max = NULL;
 	int temp;
 
 	if (!root)
@@ -57,13 +57,14 @@ void heapify(heap_t *root)
 		max = root->left;
 
 	if (max)
-		return;
-	if (max && max->n > root->n)
 	{
-		temp = max->n;
-		max->n = root->n;
-		root->n = temp;
-		heapify(max);
+		if (max->n)
+		{
+			temp = max->n;
+			max->n = root->n;
+			root->n = temp;
+			heapify(max);
+		}
 	}
 }
 
