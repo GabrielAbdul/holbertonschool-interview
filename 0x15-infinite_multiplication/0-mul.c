@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	{
 		printf("0\n");
 		printf("0\n");
-		exit(0);
+		return (0);
 	}
 
 	if ((_isdigit(argv[1]) == 0) && (_isdigit(argv[2]) == 0))
