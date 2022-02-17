@@ -27,16 +27,20 @@ def count_edges(grid, i, j):
     '''
     count = 0
     try:
-        if i - 1 == -1 or j - 1 == -1:
+        if i - 1 == -1:
             count += 1
-        if grid[i - 1][j] == 0:
+        elif grid[i - 1][j] == 0:
             count += 1
-        if grid[i + 1][j] == 0:
+        if j - 1 == -1:
             count += 1
-        if grid[i][j - 1] == 0:
+        elif grid[i][j - 1] == 0:
             count += 1
         if grid[i][j + 1] == 0:
             count += 1
+        if grid[i + 1][j] == 0:
+            count += 1
     except IndexError:
+        if i == len(grid) - 1 and j == len(grid[i]) - 1:
+            count += 1
         count += 1
     return count
