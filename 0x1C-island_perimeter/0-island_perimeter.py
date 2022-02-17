@@ -26,7 +26,6 @@ def count_edges(grid, i, j):
         i, j - indexes
     '''
     count = 0
-    print("hello:", grid[i - 1][j])
     try:
         if i - 1 == -1 or j - 1 == -1:
             count += 1
